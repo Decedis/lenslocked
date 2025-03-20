@@ -15,7 +15,7 @@ type User struct {
 }
 
 func main() {
-	t, err := template.ParseFiles("hello.go.tpl")
+	t, err := template.ParseFiles("hello.go.html")
 	if err != nil {
 		panic(err)
 	}
