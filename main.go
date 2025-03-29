@@ -18,22 +18,13 @@ func main() {
 
 	//http.Handler - interface with the ServeHTTP method
 	//http.HandlerFunc - a function that accetpts same args ase ServeHTTP method. Also implements http.Handler.
-	tpl, err := views.Parse(filepath.Join("templates", "home.go.html"))
-	if err != nil {
-		panic(err)
-	}
+	tpl := views.Must(views.Parse(filepath.Join("templates", "home.go.html")))
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl, err = views.Parse(filepath.Join("templates", "contact.go.html"))
-	if err != nil {
-		panic(err)
-	}
+	tpl = views.Must(views.Parse(filepath.Join("templates", "contact.go.html")))
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
-	tpl, err = views.Parse(filepath.Join("templates", "faq.go.html"))
-	if err != nil {
-		panic(err)
-	}
+	tpl = views.Must(views.Parse(filepath.Join("templates", "faq.go.html")))
 	r.Get("/faq", controllers.StaticHandler(tpl))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
