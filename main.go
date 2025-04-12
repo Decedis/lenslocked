@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"path/filepath"
 
 	"github.com/decedis/lenslocked/controllers"
+	"github.com/decedis/lenslocked/templates"
 	"github.com/decedis/lenslocked/views"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -18,18 +18,22 @@ func main() {
 
 	//http.Handler - interface with the ServeHTTP method
 	//http.HandlerFunc - a function that accetpts same args ase ServeHTTP method. Also implements http.Handler.
-	tpl := views.Must(views.Parse(filepath.Join("templates", "home.go.html")))
-	r.Get("/", controllers.StaticHandler(tpl))
+	homeTpl := views.Must(views.ParseFS(templates.FS, "home.go.html"))
+	r.Get("/", controllers.StaticHandler(homeTpl))
 
-	tpl = views.Must(views.Parse(filepath.Join("templates", "contact.go.html")))
-	r.Get("/contact", controllers.StaticHandler(tpl))
+	contactTpl := views.Must(views.ParseFS(templates.FS, "contact.go.html"))
+	r.Get("/contact", controllers.StaticHandler(contactTpl))
 
-	tpl = views.Must(views.Parse(filepath.Join("templates", "faq.go.html")))
-	r.Get("/faq", controllers.StaticHandler(tpl))
+	faqTpl := views.Must(views.ParseFS(templates.FS, "faq.go.html"))
+	r.Get("/faq", controllers.StaticHandler(faqTpl))
+
+	servicesTpl := views.Must(views.ParseFS(templates.FS, "services.go.html"))
+	r.Get("/services", controllers.StaticHandler(servicesTpl))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Page Not Found", http.StatusNotFound)
 	})
+
 	fmt.Println("Starting the server on :3000...")
 	http.ListenAndServe(":3000", r)
 }
