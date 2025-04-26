@@ -18,10 +18,10 @@ func main() {
 
 	//http.Handler - interface with the ServeHTTP method
 	//http.HandlerFunc - a function that accetpts same args ase ServeHTTP method. Also implements http.Handler.
-	homeTpl := views.Must(views.ParseFS(templates.FS, "home.go.html"))
+	homeTpl := views.Must(views.ParseFS(templates.FS, "layout-page.go.html", "home-page.go.html"))
 	r.Get("/", controllers.StaticHandler(homeTpl))
 
-	contactTpl := views.Must(views.ParseFS(templates.FS, "contact.go.html"))
+	contactTpl := views.Must(views.ParseFS(templates.FS, "layout-page.go.html", "contact-page.go.html"))
 	r.Get("/contact", controllers.StaticHandler(contactTpl))
 
 	faqTpl := views.Must(views.ParseFS(templates.FS, "faq.go.html"))
