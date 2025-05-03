@@ -18,16 +18,16 @@ func main() {
 
 	//http.Handler - interface with the ServeHTTP method
 	//http.HandlerFunc - a function that accetpts same args ase ServeHTTP method. Also implements http.Handler.
-	homeTpl := views.Must(views.ParseFS(templates.FS, "layout-page.go.html", "home-page.go.html"))
+	homeTpl := views.Must(views.ParseFS(templates.FS, "home.go.html", "tailwind.go.html"))
 	r.Get("/", controllers.StaticHandler(homeTpl))
 
-	contactTpl := views.Must(views.ParseFS(templates.FS, "layout-page.go.html", "contact-page.go.html"))
+	contactTpl := views.Must(views.ParseFS(templates.FS, "contact.go.html", "tailwind.go.html"))
 	r.Get("/contact", controllers.StaticHandler(contactTpl))
 
-	faqTpl := views.Must(views.ParseFS(templates.FS, "faq.go.html"))
+	faqTpl := views.Must(views.ParseFS(templates.FS, "faq.go.html", "tailwind.go.html"))
 	r.Get("/faq", controllers.FAQ(faqTpl))
 
-	servicesTpl := views.Must(views.ParseFS(templates.FS, "services.go.html"))
+	servicesTpl := views.Must(views.ParseFS(templates.FS, "services.go.html", "tailwind.go.html"))
 	r.Get("/services", controllers.StaticHandler(servicesTpl))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
