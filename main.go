@@ -17,7 +17,7 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	//http.Handler - interface with the ServeHTTP method
-	//http.HandlerFunc - a function that accetpts same args ase ServeHTTP method. Also implements http.Handler.
+	//http.HandlerFunc - a function that accepts the same args as ServeHTTP method. Also implements http.Handler.
 	homeTpl := views.Must(views.ParseFS(templates.FS, "home.go.html", "tailwind.go.html"))
 	r.Get("/", controllers.StaticHandler(homeTpl))
 
@@ -26,6 +26,9 @@ func main() {
 
 	faqTpl := views.Must(views.ParseFS(templates.FS, "faq.go.html", "tailwind.go.html"))
 	r.Get("/faq", controllers.FAQ(faqTpl))
+
+	signUp := views.Must(views.ParseFS(templates.FS, "signup.go.html", "tailwind.go.html"))
+	r.Get("/signup", controllers.StaticHandler(signUp))
 
 	servicesTpl := views.Must(views.ParseFS(templates.FS, "services.go.html", "tailwind.go.html"))
 	r.Get("/services", controllers.StaticHandler(servicesTpl))

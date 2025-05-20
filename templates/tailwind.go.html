@@ -8,7 +8,7 @@
 
   <!-- ... -->
 </head>
-<body>
+<body class="min-h-screen bg-gray-100">
   <header class="bg-gradient-to-r from-blue-800 to-indigo-800 text-white">
     <nav class="px-8 py-6 flex items-center">
       <div class="text-4xl pr-8 font-serif">Lenslocked</div>
@@ -19,7 +19,7 @@
       </div>
       <div class="">
         <a class="pr-4" href="#">Sign in</a>
-        <a class="px-4 py-2 bg-blue-700 hover:bg-blue-600 rounded" href="#">Sign up</a>
+        <a class="px-4 py-2 bg-blue-700 hover:bg-blue-600 rounded" href="signup">Sign up</a>
       </div>
     </nav>
   </header>
@@ -28,5 +28,8 @@
 
 {{define "footer"}}
 </body>
+<footer class="bg-gradient-to-r from from-blue-800 to-red-800 text-white p-8 fixed bottom-0 left-0 w-full">
+  <p class="text-4xl font-semibold text-center">Copyright 2025</p>
+</footer>
 </html>
 {{end}}
